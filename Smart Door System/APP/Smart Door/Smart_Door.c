@@ -109,7 +109,7 @@ void SetNewPinForFirstTimeOnly (void)
 {
 	uint8 i=0 ;
 	LCD_GoTo(0,0);
-	LCD_WriteString("Set New PIN :");
+	LCD_WriteString("Life Time PIN :");
 	if (Return_Byte == 0)
 	{
 		while (i < PASSWORD_SIZE)

@@ -57,7 +57,7 @@ Discarded input sections
  .data          0x00000000        0x0 HAL/LCD/LCD_Core.o
  .bss           0x00000000        0x0 HAL/LCD/LCD_Core.o
  .text.LCD_WriteInteger
-                0x00000000      0x10a HAL/LCD/LCD_Core.o
+                0x00000000      0x122 HAL/LCD/LCD_Core.o
  .text          0x00000000        0x0 HAL/LED/LED_Core.o
  .data          0x00000000        0x0 HAL/LED/LED_Core.o
  .bss           0x00000000        0x0 HAL/LED/LED_Core.o
@@ -647,7 +647,7 @@ END GROUP
  *(.fini0)
                 0x00001178                _etext = .
 
-.data           0x00800060       0xe4 load address 0x00001178
+.data           0x00800060       0xe6 load address 0x00001178
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -664,72 +664,72 @@ END GROUP
                 0x00800082        0x8 APP/CFGH/HAL_CFG/LCD_CFG.o
                 0x00800082                LCD_CUSTOM_CHARACTERS_g
  .rodata.str1.1
-                0x0080008a       0xb9 APP/Smart Door/Smart_Door.o
+                0x0080008a       0xbb APP/Smart Door/Smart_Door.o
  *(.gnu.linkonce.r*)
-                0x00800144                . = ALIGN (0x2)
- *fill*         0x00800143        0x1 
-                0x00800144                _edata = .
-                0x00800144                PROVIDE (__data_end, .)
+                0x00800146                . = ALIGN (0x2)
+ *fill*         0x00800145        0x1 
+                0x00800146                _edata = .
+                0x00800146                PROVIDE (__data_end, .)
 
-.bss            0x00800144       0x34
-                0x00800144                PROVIDE (__bss_start, .)
+.bss            0x00800146       0x34
+                0x00800146                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.Pass_Ptr  0x00800144        0x2 APP/Smart Door/Smart_Door.o
-                0x00800144                Pass_Ptr
+ .bss.Pass_Ptr  0x00800146        0x2 APP/Smart Door/Smart_Door.o
+                0x00800146                Pass_Ptr
  .bss.Return_Value
-                0x00800146        0x1 APP/Smart Door/Smart_Door.o
-                0x00800146                Return_Value
- .bss.Return_Byte
-                0x00800147        0x1 APP/Smart Door/Smart_Door.o
-                0x00800147                Return_Byte
- .bss.Wrong_Pass_Cntr
                 0x00800148        0x1 APP/Smart Door/Smart_Door.o
-                0x00800148                Wrong_Pass_Cntr
- .bss.Pass_Flag
+                0x00800148                Return_Value
+ .bss.Return_Byte
                 0x00800149        0x1 APP/Smart Door/Smart_Door.o
-                0x00800149                Pass_Flag
+                0x00800149                Return_Byte
+ .bss.Wrong_Pass_Cntr
+                0x0080014a        0x1 APP/Smart Door/Smart_Door.o
+                0x0080014a                Wrong_Pass_Cntr
+ .bss.Pass_Flag
+                0x0080014b        0x1 APP/Smart Door/Smart_Door.o
+                0x0080014b                Pass_Flag
  .bss.Data.1805
-                0x0080014a        0x4 HAL/EEPROM/EEPROM_Core.o
+                0x0080014c        0x4 HAL/EEPROM/EEPROM_Core.o
  .bss.TIMER0_CmprMatch_CNTR.1686
-                0x0080014e        0x4 MCAL/IRQH/IRQH_Core.o
+                0x00800150        0x4 MCAL/IRQH/IRQH_Core.o
  .bss.TIMER0_OVF_CNTR.1680
-                0x00800152        0x4 MCAL/IRQH/IRQH_Core.o
- .bss.RX_ptr    0x00800156        0x2 MCAL/IRQH/IRQH_Core.o
-                0x00800156                RX_ptr
- .bss.GPT_ptr   0x00800158        0x2 MCAL/IRQH/IRQH_Core.o
-                0x00800158                GPT_ptr
- .bss.ptr       0x0080015a        0x2 MCAL/IRQH/IRQH_Core.o
-                0x0080015a                ptr
+                0x00800154        0x4 MCAL/IRQH/IRQH_Core.o
+ .bss.RX_ptr    0x00800158        0x2 MCAL/IRQH/IRQH_Core.o
+                0x00800158                RX_ptr
+ .bss.GPT_ptr   0x0080015a        0x2 MCAL/IRQH/IRQH_Core.o
+                0x0080015a                GPT_ptr
+ .bss.ptr       0x0080015c        0x2 MCAL/IRQH/IRQH_Core.o
+                0x0080015c                ptr
  .bss.ReceivedByte_FLAG
-                0x0080015c        0x1 MCAL/UART/UART_Core.o
-                0x0080015c                ReceivedByte_FLAG
- .bss.TX_CNTR   0x0080015d        0x1 MCAL/UART/UART_Core.o
-                0x0080015d                TX_CNTR
- .bss.TX_STATUS_FLAG
                 0x0080015e        0x1 MCAL/UART/UART_Core.o
-                0x0080015e                TX_STATUS_FLAG
+                0x0080015e                ReceivedByte_FLAG
+ .bss.TX_CNTR   0x0080015f        0x1 MCAL/UART/UART_Core.o
+                0x0080015f                TX_CNTR
+ .bss.TX_STATUS_FLAG
+                0x00800160        0x1 MCAL/UART/UART_Core.o
+                0x00800160                TX_STATUS_FLAG
  .bss.UART_RECEIVED_BYTE
-                0x0080015f        0x1 MCAL/UART/UART_Core.o
-                0x0080015f                UART_RECEIVED_BYTE
+                0x00800161        0x1 MCAL/UART/UART_Core.o
+                0x00800161                UART_RECEIVED_BYTE
  *(COMMON)
- COMMON         0x00800160        0x4 APP/Smart Door/Smart_Door.o
-                0x00800160                UART_Received_Data
- COMMON         0x00800164       0x14 MCAL/GPT/GPT_Core.o
-                0x00800164                TIMER0Number_CmprMatch_Flags_g
-                0x00800168                TIMER0Number_OVF_Flags_g
-                0x0080016c                TIMER1Number_OVF_Flags_g
-                0x00800170                TIMER0Init_Value_g
-                0x00800174                TIMER1Init_Value_g
-                0x00800178                PROVIDE (__bss_end, .)
+ COMMON         0x00800162        0x4 APP/Smart Door/Smart_Door.o
+                0x00800162                UART_Received_Data
+ COMMON         0x00800166       0x14 MCAL/GPT/GPT_Core.o
+                0x00800166                TIMER0Number_CmprMatch_Flags_g
+                0x0080016a                TIMER0Number_OVF_Flags_g
+                0x0080016e                TIMER1Number_OVF_Flags_g
+                0x00800172                TIMER0Init_Value_g
+                0x00800176                TIMER1Init_Value_g
+                0x0080017a                PROVIDE (__bss_end, .)
                 0x00001178                __data_load_start = LOADADDR (.data)
-                0x0000125c                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000125e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800178        0x0
+.noinit         0x0080017a        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800178                _end = .
+                0x0080017a                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -887,7 +887,7 @@ END GROUP
  .debug_abbrev  0x0000101e       0x96 MCAL/PWM/PWM_Core.o
  .debug_abbrev  0x000010b4       0xc8 MCAL/UART/UART_Core.o
 
-.debug_line     0x00000000     0x1bec
+.debug_line     0x00000000     0x1bf2
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x115 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_line    0x00000115       0x4b APP/CFGH/HAL_CFG/LCD_CFG.o
@@ -896,33 +896,33 @@ END GROUP
  .debug_line    0x0000022f      0x82a APP/Smart Door/Smart_Door.o
  .debug_line    0x00000a59       0x80 HAL/Buzzer/Buzzer_Core.o
  .debug_line    0x00000ad9      0x160 HAL/EEPROM/EEPROM_Core.o
- .debug_line    0x00000c39      0x3c9 HAL/LCD/LCD_Core.o
- .debug_line    0x00001002       0xb5 HAL/LED/LED_Core.o
- .debug_line    0x000010b7       0xe5 HAL/ServoMotor/ServoMotor_Core.o
- .debug_line    0x0000119c      0x20e MCAL/DIO/DIO_Core.o
- .debug_line    0x000013aa       0x95 MCAL/GPT/GPT_Core.o
- .debug_line    0x0000143f      0x20e MCAL/I2C/I2C_Core.o
- .debug_line    0x0000164d      0x21d MCAL/IRQH/IRQH_Core.o
- .debug_line    0x0000186a      0x108 MCAL/PORT/PORT_Core.o
- .debug_line    0x00001972       0xa6 MCAL/PWM/PWM_Core.o
- .debug_line    0x00001a18      0x1d4 MCAL/UART/UART_Core.o
+ .debug_line    0x00000c39      0x3cf HAL/LCD/LCD_Core.o
+ .debug_line    0x00001008       0xb5 HAL/LED/LED_Core.o
+ .debug_line    0x000010bd       0xe5 HAL/ServoMotor/ServoMotor_Core.o
+ .debug_line    0x000011a2      0x20e MCAL/DIO/DIO_Core.o
+ .debug_line    0x000013b0       0x95 MCAL/GPT/GPT_Core.o
+ .debug_line    0x00001445      0x20e MCAL/I2C/I2C_Core.o
+ .debug_line    0x00001653      0x21d MCAL/IRQH/IRQH_Core.o
+ .debug_line    0x00001870      0x108 MCAL/PORT/PORT_Core.o
+ .debug_line    0x00001978       0xa6 MCAL/PWM/PWM_Core.o
+ .debug_line    0x00001a1e      0x1d4 MCAL/UART/UART_Core.o
 
-.debug_frame    0x00000000      0x85c
+.debug_frame    0x00000000      0x864
  *(.debug_frame)
  .debug_frame   0x00000000       0x24 APP/MAIN/main.o
  .debug_frame   0x00000024      0x104 APP/Smart Door/Smart_Door.o
  .debug_frame   0x00000128       0x34 HAL/Buzzer/Buzzer_Core.o
  .debug_frame   0x0000015c       0xa4 HAL/EEPROM/EEPROM_Core.o
- .debug_frame   0x00000200      0x118 HAL/LCD/LCD_Core.o
- .debug_frame   0x00000318       0x54 HAL/LED/LED_Core.o
- .debug_frame   0x0000036c       0x44 HAL/ServoMotor/ServoMotor_Core.o
- .debug_frame   0x000003b0       0x64 MCAL/DIO/DIO_Core.o
- .debug_frame   0x00000414       0x34 MCAL/GPT/GPT_Core.o
- .debug_frame   0x00000448       0xa4 MCAL/I2C/I2C_Core.o
- .debug_frame   0x000004ec      0x25c MCAL/IRQH/IRQH_Core.o
- .debug_frame   0x00000748       0x24 MCAL/PORT/PORT_Core.o
- .debug_frame   0x0000076c       0x4c MCAL/PWM/PWM_Core.o
- .debug_frame   0x000007b8       0xa4 MCAL/UART/UART_Core.o
+ .debug_frame   0x00000200      0x120 HAL/LCD/LCD_Core.o
+ .debug_frame   0x00000320       0x54 HAL/LED/LED_Core.o
+ .debug_frame   0x00000374       0x44 HAL/ServoMotor/ServoMotor_Core.o
+ .debug_frame   0x000003b8       0x64 MCAL/DIO/DIO_Core.o
+ .debug_frame   0x0000041c       0x34 MCAL/GPT/GPT_Core.o
+ .debug_frame   0x00000450       0xa4 MCAL/I2C/I2C_Core.o
+ .debug_frame   0x000004f4      0x25c MCAL/IRQH/IRQH_Core.o
+ .debug_frame   0x00000750       0x24 MCAL/PORT/PORT_Core.o
+ .debug_frame   0x00000774       0x4c MCAL/PWM/PWM_Core.o
+ .debug_frame   0x000007c0       0xa4 MCAL/UART/UART_Core.o
 
 .debug_str      0x00000000      0xcf8
  *(.debug_str)
@@ -960,18 +960,18 @@ END GROUP
  .debug_str     0x00000bed      0x10b MCAL/UART/UART_Core.o
                                 0x31f (size before relaxing)
 
-.debug_loc      0x00000000     0x1fcf
+.debug_loc      0x00000000     0x1fbb
  *(.debug_loc)
  .debug_loc     0x00000000      0x604 APP/Smart Door/Smart_Door.o
  .debug_loc     0x00000604      0x3c0 HAL/EEPROM/EEPROM_Core.o
- .debug_loc     0x000009c4      0x73d HAL/LCD/LCD_Core.o
- .debug_loc     0x00001101       0x85 HAL/ServoMotor/ServoMotor_Core.o
- .debug_loc     0x00001186      0x595 MCAL/DIO/DIO_Core.o
- .debug_loc     0x0000171b       0x8e MCAL/I2C/I2C_Core.o
- .debug_loc     0x000017a9      0x4d0 MCAL/IRQH/IRQH_Core.o
- .debug_loc     0x00001c79      0x258 MCAL/PORT/PORT_Core.o
- .debug_loc     0x00001ed1       0x6f MCAL/PWM/PWM_Core.o
- .debug_loc     0x00001f40       0x8f MCAL/UART/UART_Core.o
+ .debug_loc     0x000009c4      0x729 HAL/LCD/LCD_Core.o
+ .debug_loc     0x000010ed       0x85 HAL/ServoMotor/ServoMotor_Core.o
+ .debug_loc     0x00001172      0x595 MCAL/DIO/DIO_Core.o
+ .debug_loc     0x00001707       0x8e MCAL/I2C/I2C_Core.o
+ .debug_loc     0x00001795      0x4d0 MCAL/IRQH/IRQH_Core.o
+ .debug_loc     0x00001c65      0x258 MCAL/PORT/PORT_Core.o
+ .debug_loc     0x00001ebd       0x6f MCAL/PWM/PWM_Core.o
+ .debug_loc     0x00001f2c       0x8f MCAL/UART/UART_Core.o
 
 .debug_macinfo
  *(.debug_macinfo)

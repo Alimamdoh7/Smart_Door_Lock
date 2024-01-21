@@ -5,27 +5,27 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .text         00001178  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         000000e4  00800060  00001178  0000120c  2**0
+  1 .data         000000e6  00800060  00001178  0000120c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000034  00800144  00800144  000012f0  2**0
+  2 .bss          00000034  00800146  00800146  000012f2  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000012f0  2**0
+  3 .comment      00000030  00000000  00000000  000012f2  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001320  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001324  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000003d8  00000000  00000000  0000135c  2**0
+  5 .debug_aranges 000003d8  00000000  00000000  00001360  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000331f  00000000  00000000  00001734  2**0
+  6 .debug_info   0000331f  00000000  00000000  00001738  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 0000117c  00000000  00000000  00004a53  2**0
+  7 .debug_abbrev 0000117c  00000000  00000000  00004a57  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001bec  00000000  00000000  00005bcf  2**0
+  8 .debug_line   00001bf2  00000000  00000000  00005bd3  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000085c  00000000  00000000  000077bc  2**2
+  9 .debug_frame  00000864  00000000  00000000  000077c8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000cf8  00000000  00000000  00008018  2**0
+ 10 .debug_str    00000cf8  00000000  00000000  0000802c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00001fcf  00000000  00000000  00008d10  2**0
+ 11 .debug_loc    00001fbb  00000000  00000000  00008d24  2**0
                   CONTENTS, READONLY, DEBUGGING
  12 .debug_ranges 000002c8  00000000  00000000  0000acdf  2**0
                   CONTENTS, READONLY, DEBUGGING
@@ -72,13 +72,13 @@ Disassembly of section .text:
       6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
       6c:	05 90       	lpm	r0, Z+
       6e:	0d 92       	st	X+, r0
-      70:	a4 34       	cpi	r26, 0x44	; 68
+      70:	a6 34       	cpi	r26, 0x46	; 70
       72:	b1 07       	cpc	r27, r17
       74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
 
 00000076 <__do_clear_bss>:
       76:	21 e0       	ldi	r18, 0x01	; 1
-      78:	a4 e4       	ldi	r26, 0x44	; 68
+      78:	a6 e4       	ldi	r26, 0x46	; 70
       7a:	b1 e0       	ldi	r27, 0x01	; 1
       7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
 
@@ -86,7 +86,7 @@ Disassembly of section .text:
       7e:	1d 92       	st	X+, r1
 
 00000080 <.do_clear_bss_start>:
-      80:	a8 37       	cpi	r26, 0x78	; 120
+      80:	aa 37       	cpi	r26, 0x7A	; 122
       82:	b2 07       	cpc	r27, r18
       84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
       86:	0e 94 49 00 	call	0x92	; 0x92 <main>
@@ -267,7 +267,7 @@ void Write_Password_In_EEPROM (void)
 	_delay_ms(5);
 	Pass_Flag =1;
      194:	81 e0       	ldi	r24, 0x01	; 1
-     196:	80 93 49 01 	sts	0x0149, r24	; 0x800149 <Pass_Flag>
+     196:	80 93 4b 01 	sts	0x014B, r24	; 0x80014b <Pass_Flag>
 	EEPROM_WriteByte(Pass_Flag , EEPROM_ADDRESS , PASSWORD_FLAG_ADRESS);
      19a:	45 e0       	ldi	r20, 0x05	; 5
      19c:	60 e5       	ldi	r22, 0x50	; 80
@@ -316,12 +316,12 @@ void SetNewPinForFirstTimeOnly (void)
      1dc:	60 e0       	ldi	r22, 0x00	; 0
      1de:	80 e0       	ldi	r24, 0x00	; 0
      1e0:	0e 94 9a 04 	call	0x934	; 0x934 <LCD_GoTo>
-	LCD_WriteString("Set New PIN :");
+	LCD_WriteString("Life Time PIN :");
      1e4:	88 ed       	ldi	r24, 0xD8	; 216
      1e6:	90 e0       	ldi	r25, 0x00	; 0
      1e8:	0e 94 7e 04 	call	0x8fc	; 0x8fc <LCD_WriteString>
 	if (Return_Byte == 0)
-     1ec:	80 91 47 01 	lds	r24, 0x0147	; 0x800147 <Return_Byte>
+     1ec:	80 91 49 01 	lds	r24, 0x0149	; 0x800149 <Return_Byte>
      1f0:	81 11       	cpse	r24, r1
      1f2:	1f c0       	rjmp	.+62     	; 0x232 <SetNewPinForFirstTimeOnly+0x58>
      1f4:	c0 e0       	ldi	r28, 0x00	; 0
@@ -330,7 +330,7 @@ void SetNewPinForFirstTimeOnly (void)
 		{
 			Return_Byte = UART_ReceivedByte_Status();
      1f6:	0e 94 61 08 	call	0x10c2	; 0x10c2 <UART_ReceivedByte_Status>
-     1fa:	80 93 47 01 	sts	0x0147, r24	; 0x800147 <Return_Byte>
+     1fa:	80 93 49 01 	sts	0x0149, r24	; 0x800149 <Return_Byte>
 			if (Return_Byte == 1)
      1fe:	81 30       	cpi	r24, 0x01	; 1
      200:	89 f4       	brne	.+34     	; 0x224 <SetNewPinForFirstTimeOnly+0x4a>
@@ -340,7 +340,7 @@ void SetNewPinForFirstTimeOnly (void)
      204:	f0 e0       	ldi	r31, 0x00	; 0
      206:	e2 58       	subi	r30, 0x82	; 130
      208:	ff 4f       	sbci	r31, 0xFF	; 255
-     20a:	80 91 5f 01 	lds	r24, 0x015F	; 0x80015f <UART_RECEIVED_BYTE>
+     20a:	80 91 61 01 	lds	r24, 0x0161	; 0x800161 <UART_RECEIVED_BYTE>
      20e:	80 83       	st	Z, r24
 				LCD_GoTo(1,i);
      210:	6c 2f       	mov	r22, r28
@@ -352,7 +352,7 @@ void SetNewPinForFirstTimeOnly (void)
 				i++;
      21e:	cf 5f       	subi	r28, 0xFF	; 255
 				Return_Byte=0;
-     220:	10 92 47 01 	sts	0x0147, r1	; 0x800147 <Return_Byte>
+     220:	10 92 49 01 	sts	0x0149, r1	; 0x800149 <Return_Byte>
 			}
 			if (i == PASSWORD_SIZE)
      224:	c4 30       	cpi	r28, 0x04	; 4
@@ -363,7 +363,7 @@ void SetNewPinForFirstTimeOnly (void)
      22c:	02 c0       	rjmp	.+4      	; 0x232 <SetNewPinForFirstTimeOnly+0x58>
 	uint8 i=0 ;
 	LCD_GoTo(0,0);
-	LCD_WriteString("Set New PIN :");
+	LCD_WriteString("Life Time PIN :");
 	if (Return_Byte == 0)
 	{
 		while (i < PASSWORD_SIZE)
@@ -388,7 +388,7 @@ void CheckIfPasswordIsStoredInEEPROM (void)
      236:	65 e0       	ldi	r22, 0x05	; 5
      238:	80 e5       	ldi	r24, 0x50	; 80
      23a:	0e 94 3b 03 	call	0x676	; 0x676 <EEPROM_ReadByte>
-     23e:	80 93 49 01 	sts	0x0149, r24	; 0x800149 <Pass_Flag>
+     23e:	80 93 4b 01 	sts	0x014B, r24	; 0x80014b <Pass_Flag>
      242:	8f e1       	ldi	r24, 0x1F	; 31
      244:	9e e4       	ldi	r25, 0x4E	; 78
      246:	01 97       	sbiw	r24, 0x01	; 1
@@ -397,16 +397,16 @@ void CheckIfPasswordIsStoredInEEPROM (void)
      24c:	00 00       	nop
 	_delay_ms(5);
 	if (Pass_Flag == 0)
-     24e:	80 91 49 01 	lds	r24, 0x0149	; 0x800149 <Pass_Flag>
+     24e:	80 91 4b 01 	lds	r24, 0x014B	; 0x80014b <Pass_Flag>
      252:	81 11       	cpse	r24, r1
      254:	1b c0       	rjmp	.+54     	; 0x28c <CheckIfPasswordIsStoredInEEPROM+0x56>
 	{
 		Return_Byte=0;
-     256:	10 92 47 01 	sts	0x0147, r1	; 0x800147 <Return_Byte>
+     256:	10 92 49 01 	sts	0x0149, r1	; 0x800149 <Return_Byte>
 		SetNewPinForFirstTimeOnly();
      25a:	0e 94 ed 00 	call	0x1da	; 0x1da <SetNewPinForFirstTimeOnly>
 		Return_Byte=0;
-     25e:	10 92 47 01 	sts	0x0147, r1	; 0x800147 <Return_Byte>
+     25e:	10 92 49 01 	sts	0x0149, r1	; 0x800149 <Return_Byte>
 		LCD_Clear();
      262:	0e 94 b5 04 	call	0x96a	; 0x96a <LCD_Clear>
 		LCD_GoTo(0,0);
@@ -414,7 +414,7 @@ void CheckIfPasswordIsStoredInEEPROM (void)
      268:	80 e0       	ldi	r24, 0x00	; 0
      26a:	0e 94 9a 04 	call	0x934	; 0x934 <LCD_GoTo>
 		LCD_WriteString("1-Set New Pin:");
-     26e:	86 ee       	ldi	r24, 0xE6	; 230
+     26e:	88 ee       	ldi	r24, 0xE8	; 232
      270:	90 e0       	ldi	r25, 0x00	; 0
      272:	0e 94 7e 04 	call	0x8fc	; 0x8fc <LCD_WriteString>
 		LCD_GoTo(1,0);
@@ -422,7 +422,7 @@ void CheckIfPasswordIsStoredInEEPROM (void)
      278:	81 e0       	ldi	r24, 0x01	; 1
      27a:	0e 94 9a 04 	call	0x934	; 0x934 <LCD_GoTo>
 		LCD_WriteString("2-Login:");
-     27e:	85 ef       	ldi	r24, 0xF5	; 245
+     27e:	87 ef       	ldi	r24, 0xF7	; 247
      280:	90 e0       	ldi	r25, 0x00	; 0
      282:	0e 94 7e 04 	call	0x8fc	; 0x8fc <LCD_WriteString>
 		ServoMotor_Home();
@@ -438,7 +438,7 @@ void CheckIfPasswordIsStoredInEEPROM (void)
      292:	80 e0       	ldi	r24, 0x00	; 0
      294:	0e 94 9a 04 	call	0x934	; 0x934 <LCD_GoTo>
 		LCD_WriteString("1-Set New Pin:");
-     298:	86 ee       	ldi	r24, 0xE6	; 230
+     298:	88 ee       	ldi	r24, 0xE8	; 232
      29a:	90 e0       	ldi	r25, 0x00	; 0
      29c:	0e 94 7e 04 	call	0x8fc	; 0x8fc <LCD_WriteString>
 		LCD_GoTo(1,0);
@@ -446,7 +446,7 @@ void CheckIfPasswordIsStoredInEEPROM (void)
      2a2:	81 e0       	ldi	r24, 0x01	; 1
      2a4:	0e 94 9a 04 	call	0x934	; 0x934 <LCD_GoTo>
 		LCD_WriteString("2-Login:");
-     2a8:	85 ef       	ldi	r24, 0xF5	; 245
+     2a8:	87 ef       	ldi	r24, 0xF7	; 247
      2aa:	90 e0       	ldi	r25, 0x00	; 0
      2ac:	0e 94 7e 04 	call	0x8fc	; 0x8fc <LCD_WriteString>
 		ServoMotor_Home();
@@ -476,7 +476,7 @@ void Project_Init (void)
 void Right_Password_Sequence (void)
 {
 	Wrong_Pass_Cntr=0;
-     2c8:	10 92 48 01 	sts	0x0148, r1	; 0x800148 <Wrong_Pass_Cntr>
+     2c8:	10 92 4a 01 	sts	0x014A, r1	; 0x80014a <Wrong_Pass_Cntr>
 	LCD_Clear();
      2cc:	0e 94 b5 04 	call	0x96a	; 0x96a <LCD_Clear>
 	LCD_GoTo(0,0);
@@ -484,8 +484,8 @@ void Right_Password_Sequence (void)
      2d2:	80 e0       	ldi	r24, 0x00	; 0
      2d4:	0e 94 9a 04 	call	0x934	; 0x934 <LCD_GoTo>
 	LCD_WriteString("Welcome");
-     2d8:	8e ef       	ldi	r24, 0xFE	; 254
-     2da:	90 e0       	ldi	r25, 0x00	; 0
+     2d8:	80 e0       	ldi	r24, 0x00	; 0
+     2da:	91 e0       	ldi	r25, 0x01	; 1
      2dc:	0e 94 7e 04 	call	0x8fc	; 0x8fc <LCD_WriteString>
 	ServoMotor_SetAngle18(90);
      2e0:	8a e5       	ldi	r24, 0x5A	; 90
@@ -503,7 +503,7 @@ void Right_Password_Sequence (void)
 	ServoMotor_Home();
      2f8:	0e 94 1f 05 	call	0xa3e	; 0xa3e <ServoMotor_Home>
 	Return_Value =0;
-     2fc:	10 92 46 01 	sts	0x0146, r1	; 0x800146 <Return_Value>
+     2fc:	10 92 48 01 	sts	0x0148, r1	; 0x800148 <Return_Value>
 	CheckIfPasswordIsStoredInEEPROM();
      300:	0e 94 1b 01 	call	0x236	; 0x236 <CheckIfPasswordIsStoredInEEPROM>
      304:	08 95       	ret
@@ -524,13 +524,13 @@ void PIN_Entry_Sequence(void)
      30e:	80 e0       	ldi	r24, 0x00	; 0
      310:	0e 94 9a 04 	call	0x934	; 0x934 <LCD_GoTo>
 	LCD_WriteString("ENTER PIN:");
-     314:	86 e0       	ldi	r24, 0x06	; 6
+     314:	88 e0       	ldi	r24, 0x08	; 8
      316:	91 e0       	ldi	r25, 0x01	; 1
      318:	0e 94 7e 04 	call	0x8fc	; 0x8fc <LCD_WriteString>
 	ServoMotor_Home();
      31c:	0e 94 1f 05 	call	0xa3e	; 0xa3e <ServoMotor_Home>
 	Return_Byte =0;
-     320:	10 92 47 01 	sts	0x0147, r1	; 0x800147 <Return_Byte>
+     320:	10 92 49 01 	sts	0x0149, r1	; 0x800149 <Return_Byte>
 	LCD_GoTo(1 , 0);
      324:	60 e0       	ldi	r22, 0x00	; 0
      326:	81 e0       	ldi	r24, 0x01	; 1
@@ -549,7 +549,7 @@ void PIN_Entry_Sequence(void)
 	{
 		Return_Byte = UART_ReceivedByte_Status();
      32e:	0e 94 61 08 	call	0x10c2	; 0x10c2 <UART_ReceivedByte_Status>
-     332:	80 93 47 01 	sts	0x0147, r24	; 0x800147 <Return_Byte>
+     332:	80 93 49 01 	sts	0x0149, r24	; 0x800149 <Return_Byte>
 		if (Return_Byte == 1)
      336:	81 30       	cpi	r24, 0x01	; 1
      338:	69 f4       	brne	.+26     	; 0x354 <PIN_Entry_Sequence+0x4e>
@@ -557,9 +557,9 @@ void PIN_Entry_Sequence(void)
 			UART_Received_Data[i] = UART_RECEIVED_BYTE;
      33a:	ec 2f       	mov	r30, r28
      33c:	f0 e0       	ldi	r31, 0x00	; 0
-     33e:	e0 5a       	subi	r30, 0xA0	; 160
+     33e:	ee 59       	subi	r30, 0x9E	; 158
      340:	fe 4f       	sbci	r31, 0xFE	; 254
-     342:	80 91 5f 01 	lds	r24, 0x015F	; 0x80015f <UART_RECEIVED_BYTE>
+     342:	80 91 61 01 	lds	r24, 0x0161	; 0x800161 <UART_RECEIVED_BYTE>
      346:	80 83       	st	Z, r24
 			LCD_WriteChar('*');
      348:	8a e2       	ldi	r24, 0x2A	; 42
@@ -567,7 +567,7 @@ void PIN_Entry_Sequence(void)
 			i++;
      34e:	cf 5f       	subi	r28, 0xFF	; 255
 			Return_Byte=0;
-     350:	10 92 47 01 	sts	0x0147, r1	; 0x800147 <Return_Byte>
+     350:	10 92 49 01 	sts	0x0149, r1	; 0x800149 <Return_Byte>
 		}
 		if (i == PASSWORD_SIZE)
      354:	c4 30       	cpi	r28, 0x04	; 4
@@ -575,7 +575,7 @@ void PIN_Entry_Sequence(void)
 		{
 			Return_Value = 1;
      358:	81 e0       	ldi	r24, 0x01	; 1
-     35a:	80 93 46 01 	sts	0x0146, r24	; 0x800146 <Return_Value>
+     35a:	80 93 48 01 	sts	0x0148, r24	; 0x800148 <Return_Value>
      35e:	06 c0       	rjmp	.+12     	; 0x36c <PIN_Entry_Sequence+0x66>
 	LCD_GoTo(0,0);
 	LCD_WriteString("ENTER PIN:");
@@ -591,7 +591,7 @@ void PIN_Entry_Sequence(void)
 	}
 	i=0;
 	if (Return_Value == 1)
-     364:	80 91 46 01 	lds	r24, 0x0146	; 0x800146 <Return_Value>
+     364:	80 91 48 01 	lds	r24, 0x0148	; 0x800148 <Return_Value>
      368:	81 30       	cpi	r24, 0x01	; 1
      36a:	59 f5       	brne	.+86     	; 0x3c2 <PIN_Entry_Sequence+0xbc>
 	{
@@ -599,8 +599,8 @@ void PIN_Entry_Sequence(void)
      36c:	60 e0       	ldi	r22, 0x00	; 0
      36e:	80 e5       	ldi	r24, 0x50	; 80
      370:	0e 94 80 03 	call	0x700	; 0x700 <EEPROM_ReadMultipleBytes>
-     374:	90 93 45 01 	sts	0x0145, r25	; 0x800145 <__data_end+0x1>
-     378:	80 93 44 01 	sts	0x0144, r24	; 0x800144 <__data_end>
+     374:	90 93 47 01 	sts	0x0147, r25	; 0x800147 <__data_end+0x1>
+     378:	80 93 46 01 	sts	0x0146, r24	; 0x800146 <__data_end>
      37c:	8f e1       	ldi	r24, 0x1F	; 31
      37e:	9e e4       	ldi	r25, 0x4E	; 78
      380:	01 97       	sbiw	r24, 0x01	; 1
@@ -609,21 +609,21 @@ void PIN_Entry_Sequence(void)
      386:	00 00       	nop
 		_delay_ms(5);
 		if ((UART_Received_Data[0] == Pass_Ptr[0]) && (UART_Received_Data[1] == Pass_Ptr[1]) && (UART_Received_Data[2] == Pass_Ptr[2]) && (UART_Received_Data[3] == Pass_Ptr[3]) )
-     388:	e0 91 44 01 	lds	r30, 0x0144	; 0x800144 <__data_end>
-     38c:	f0 91 45 01 	lds	r31, 0x0145	; 0x800145 <__data_end+0x1>
-     390:	90 91 60 01 	lds	r25, 0x0160	; 0x800160 <UART_Received_Data>
+     388:	e0 91 46 01 	lds	r30, 0x0146	; 0x800146 <__data_end>
+     38c:	f0 91 47 01 	lds	r31, 0x0147	; 0x800147 <__data_end+0x1>
+     390:	90 91 62 01 	lds	r25, 0x0162	; 0x800162 <UART_Received_Data>
      394:	80 81       	ld	r24, Z
      396:	98 13       	cpse	r25, r24
      398:	12 c0       	rjmp	.+36     	; 0x3be <PIN_Entry_Sequence+0xb8>
-     39a:	90 91 61 01 	lds	r25, 0x0161	; 0x800161 <UART_Received_Data+0x1>
+     39a:	90 91 63 01 	lds	r25, 0x0163	; 0x800163 <UART_Received_Data+0x1>
      39e:	81 81       	ldd	r24, Z+1	; 0x01
      3a0:	98 13       	cpse	r25, r24
      3a2:	0d c0       	rjmp	.+26     	; 0x3be <PIN_Entry_Sequence+0xb8>
-     3a4:	90 91 62 01 	lds	r25, 0x0162	; 0x800162 <UART_Received_Data+0x2>
+     3a4:	90 91 64 01 	lds	r25, 0x0164	; 0x800164 <UART_Received_Data+0x2>
      3a8:	82 81       	ldd	r24, Z+2	; 0x02
      3aa:	98 13       	cpse	r25, r24
      3ac:	08 c0       	rjmp	.+16     	; 0x3be <PIN_Entry_Sequence+0xb8>
-     3ae:	90 91 63 01 	lds	r25, 0x0163	; 0x800163 <UART_Received_Data+0x3>
+     3ae:	90 91 65 01 	lds	r25, 0x0165	; 0x800165 <UART_Received_Data+0x3>
      3b2:	83 81       	ldd	r24, Z+3	; 0x03
      3b4:	98 13       	cpse	r25, r24
      3b6:	03 c0       	rjmp	.+6      	; 0x3be <PIN_Entry_Sequence+0xb8>
@@ -655,7 +655,7 @@ void Wrong_Password_Sequence (void)
      3cc:	80 e0       	ldi	r24, 0x00	; 0
      3ce:	0e 94 9a 04 	call	0x934	; 0x934 <LCD_GoTo>
 	LCD_WriteString("Wrong Pin");
-     3d2:	81 e1       	ldi	r24, 0x11	; 17
+     3d2:	83 e1       	ldi	r24, 0x13	; 19
      3d4:	91 e0       	ldi	r25, 0x01	; 1
      3d6:	0e 94 7e 04 	call	0x8fc	; 0x8fc <LCD_WriteString>
      3da:	2f ef       	ldi	r18, 0xFF	; 255
@@ -669,9 +669,9 @@ void Wrong_Password_Sequence (void)
      3ea:	00 00       	nop
 	_delay_ms(1500);
 	Wrong_Pass_Cntr++;
-     3ec:	80 91 48 01 	lds	r24, 0x0148	; 0x800148 <Wrong_Pass_Cntr>
+     3ec:	80 91 4a 01 	lds	r24, 0x014A	; 0x80014a <Wrong_Pass_Cntr>
      3f0:	8f 5f       	subi	r24, 0xFF	; 255
-     3f2:	80 93 48 01 	sts	0x0148, r24	; 0x800148 <Wrong_Pass_Cntr>
+     3f2:	80 93 4a 01 	sts	0x014A, r24	; 0x80014a <Wrong_Pass_Cntr>
 	if (Wrong_Pass_Cntr < 3)
      3f6:	83 30       	cpi	r24, 0x03	; 3
      3f8:	b0 f4       	brcc	.+44     	; 0x426 <__LOCK_REGION_LENGTH__+0x26>
@@ -683,7 +683,7 @@ void Wrong_Password_Sequence (void)
      400:	80 e0       	ldi	r24, 0x00	; 0
      402:	0e 94 9a 04 	call	0x934	; 0x934 <LCD_GoTo>
 		LCD_WriteString("Try Again");
-     406:	8b e1       	ldi	r24, 0x1B	; 27
+     406:	8d e1       	ldi	r24, 0x1D	; 29
      408:	91 e0       	ldi	r25, 0x01	; 1
      40a:	0e 94 7e 04 	call	0x8fc	; 0x8fc <LCD_WriteString>
      40e:	2f ef       	ldi	r18, 0xFF	; 255
@@ -721,11 +721,11 @@ void Wrong_Password_Sequence (void)
 		Buzzer_OFF();
      444:	0e 94 1f 03 	call	0x63e	; 0x63e <Buzzer_OFF>
 		Return_Value =0;
-     448:	10 92 46 01 	sts	0x0146, r1	; 0x800146 <Return_Value>
+     448:	10 92 48 01 	sts	0x0148, r1	; 0x800148 <Return_Value>
 		CheckIfPasswordIsStoredInEEPROM();
      44c:	0e 94 1b 01 	call	0x236	; 0x236 <CheckIfPasswordIsStoredInEEPROM>
 		Wrong_Pass_Cntr=0;
-     450:	10 92 48 01 	sts	0x0148, r1	; 0x800148 <Wrong_Pass_Cntr>
+     450:	10 92 4a 01 	sts	0x014A, r1	; 0x80014a <Wrong_Pass_Cntr>
      454:	08 95       	ret
 
 00000456 <New_PIN_Entry_Sequence>:
@@ -744,11 +744,11 @@ void New_PIN_Entry_Sequence(void)
      45e:	80 e0       	ldi	r24, 0x00	; 0
      460:	0e 94 9a 04 	call	0x934	; 0x934 <LCD_GoTo>
 	LCD_WriteString("ENTER NEW PIN:");
-     464:	85 e2       	ldi	r24, 0x25	; 37
+     464:	87 e2       	ldi	r24, 0x27	; 39
      466:	91 e0       	ldi	r25, 0x01	; 1
      468:	0e 94 7e 04 	call	0x8fc	; 0x8fc <LCD_WriteString>
 	Return_Byte =0;
-     46c:	10 92 47 01 	sts	0x0147, r1	; 0x800147 <Return_Byte>
+     46c:	10 92 49 01 	sts	0x0149, r1	; 0x800149 <Return_Byte>
 	LCD_GoTo(1 , 0);
      470:	60 e0       	ldi	r22, 0x00	; 0
      472:	81 e0       	ldi	r24, 0x01	; 1
@@ -767,7 +767,7 @@ void New_PIN_Entry_Sequence(void)
 	{
 		Return_Byte = UART_ReceivedByte_Status();
      47a:	0e 94 61 08 	call	0x10c2	; 0x10c2 <UART_ReceivedByte_Status>
-     47e:	80 93 47 01 	sts	0x0147, r24	; 0x800147 <Return_Byte>
+     47e:	80 93 49 01 	sts	0x0149, r24	; 0x800149 <Return_Byte>
 		if (Return_Byte == 1)
      482:	81 30       	cpi	r24, 0x01	; 1
      484:	69 f4       	brne	.+26     	; 0x4a0 <New_PIN_Entry_Sequence+0x4a>
@@ -777,7 +777,7 @@ void New_PIN_Entry_Sequence(void)
      488:	f0 e0       	ldi	r31, 0x00	; 0
      48a:	e2 58       	subi	r30, 0x82	; 130
      48c:	ff 4f       	sbci	r31, 0xFF	; 255
-     48e:	80 91 5f 01 	lds	r24, 0x015F	; 0x80015f <UART_RECEIVED_BYTE>
+     48e:	80 91 61 01 	lds	r24, 0x0161	; 0x800161 <UART_RECEIVED_BYTE>
      492:	80 83       	st	Z, r24
 			LCD_WriteChar('*');
      494:	8a e2       	ldi	r24, 0x2A	; 42
@@ -785,7 +785,7 @@ void New_PIN_Entry_Sequence(void)
 			i++;
      49a:	cf 5f       	subi	r28, 0xFF	; 255
 			Return_Byte=0;
-     49c:	10 92 47 01 	sts	0x0147, r1	; 0x800147 <Return_Byte>
+     49c:	10 92 49 01 	sts	0x0149, r1	; 0x800149 <Return_Byte>
 		}
 		if (i == PASSWORD_SIZE)
      4a0:	c4 30       	cpi	r28, 0x04	; 4
@@ -793,7 +793,7 @@ void New_PIN_Entry_Sequence(void)
 		{
 			Return_Value = 1;
      4a4:	81 e0       	ldi	r24, 0x01	; 1
-     4a6:	80 93 46 01 	sts	0x0146, r24	; 0x800146 <Return_Value>
+     4a6:	80 93 48 01 	sts	0x0148, r24	; 0x800148 <Return_Value>
      4aa:	06 c0       	rjmp	.+12     	; 0x4b8 <New_PIN_Entry_Sequence+0x62>
 	LCD_Clear();
 	LCD_GoTo(0,0);
@@ -809,7 +809,7 @@ void New_PIN_Entry_Sequence(void)
 	}
 	i=0;
 	if (Return_Value == 1)
-     4b0:	80 91 46 01 	lds	r24, 0x0146	; 0x800146 <Return_Value>
+     4b0:	80 91 48 01 	lds	r24, 0x0148	; 0x800148 <Return_Value>
      4b4:	81 30       	cpi	r24, 0x01	; 1
      4b6:	21 f4       	brne	.+8      	; 0x4c0 <New_PIN_Entry_Sequence+0x6a>
 	{
@@ -834,7 +834,7 @@ void Wrong_Password_Sequence_For_Changing_Pin (void)
      4ca:	80 e0       	ldi	r24, 0x00	; 0
      4cc:	0e 94 9a 04 	call	0x934	; 0x934 <LCD_GoTo>
 	LCD_WriteString("Wrong Pin");
-     4d0:	81 e1       	ldi	r24, 0x11	; 17
+     4d0:	83 e1       	ldi	r24, 0x13	; 19
      4d2:	91 e0       	ldi	r25, 0x01	; 1
      4d4:	0e 94 7e 04 	call	0x8fc	; 0x8fc <LCD_WriteString>
      4d8:	2f ef       	ldi	r18, 0xFF	; 255
@@ -848,9 +848,9 @@ void Wrong_Password_Sequence_For_Changing_Pin (void)
      4e8:	00 00       	nop
 	_delay_ms(1500);
 	Wrong_Pass_Cntr++;
-     4ea:	80 91 48 01 	lds	r24, 0x0148	; 0x800148 <Wrong_Pass_Cntr>
+     4ea:	80 91 4a 01 	lds	r24, 0x014A	; 0x80014a <Wrong_Pass_Cntr>
      4ee:	8f 5f       	subi	r24, 0xFF	; 255
-     4f0:	80 93 48 01 	sts	0x0148, r24	; 0x800148 <Wrong_Pass_Cntr>
+     4f0:	80 93 4a 01 	sts	0x014A, r24	; 0x80014a <Wrong_Pass_Cntr>
 	if (Wrong_Pass_Cntr < 3)
      4f4:	83 30       	cpi	r24, 0x03	; 3
      4f6:	b0 f4       	brcc	.+44     	; 0x524 <Wrong_Password_Sequence_For_Changing_Pin+0x60>
@@ -862,7 +862,7 @@ void Wrong_Password_Sequence_For_Changing_Pin (void)
      4fe:	80 e0       	ldi	r24, 0x00	; 0
      500:	0e 94 9a 04 	call	0x934	; 0x934 <LCD_GoTo>
 		LCD_WriteString("Try Again");
-     504:	8b e1       	ldi	r24, 0x1B	; 27
+     504:	8d e1       	ldi	r24, 0x1D	; 29
      506:	91 e0       	ldi	r25, 0x01	; 1
      508:	0e 94 7e 04 	call	0x8fc	; 0x8fc <LCD_WriteString>
      50c:	2f ef       	ldi	r18, 0xFF	; 255
@@ -900,11 +900,11 @@ void Wrong_Password_Sequence_For_Changing_Pin (void)
 		Buzzer_OFF();
      542:	0e 94 1f 03 	call	0x63e	; 0x63e <Buzzer_OFF>
 		Return_Value =0;
-     546:	10 92 46 01 	sts	0x0146, r1	; 0x800146 <Return_Value>
+     546:	10 92 48 01 	sts	0x0148, r1	; 0x800148 <Return_Value>
 		CheckIfPasswordIsStoredInEEPROM();
      54a:	0e 94 1b 01 	call	0x236	; 0x236 <CheckIfPasswordIsStoredInEEPROM>
 		Wrong_Pass_Cntr=0;
-     54e:	10 92 48 01 	sts	0x0148, r1	; 0x800148 <Wrong_Pass_Cntr>
+     54e:	10 92 4a 01 	sts	0x014A, r1	; 0x80014a <Wrong_Pass_Cntr>
      552:	08 95       	ret
 
 00000554 <Change_PIN_Sequence>:
@@ -920,8 +920,8 @@ void Change_PIN_Sequence(void)
      556:	60 e0       	ldi	r22, 0x00	; 0
      558:	80 e5       	ldi	r24, 0x50	; 80
      55a:	0e 94 80 03 	call	0x700	; 0x700 <EEPROM_ReadMultipleBytes>
-     55e:	90 93 45 01 	sts	0x0145, r25	; 0x800145 <__data_end+0x1>
-     562:	80 93 44 01 	sts	0x0144, r24	; 0x800144 <__data_end>
+     55e:	90 93 47 01 	sts	0x0147, r25	; 0x800147 <__data_end+0x1>
+     562:	80 93 46 01 	sts	0x0146, r24	; 0x800146 <__data_end>
      566:	8f e1       	ldi	r24, 0x1F	; 31
      568:	9e e4       	ldi	r25, 0x4E	; 78
      56a:	01 97       	sbiw	r24, 0x01	; 1
@@ -936,11 +936,11 @@ void Change_PIN_Sequence(void)
      578:	80 e0       	ldi	r24, 0x00	; 0
      57a:	0e 94 9a 04 	call	0x934	; 0x934 <LCD_GoTo>
 	LCD_WriteString("ENTER OLD PIN:");
-     57e:	84 e3       	ldi	r24, 0x34	; 52
+     57e:	86 e3       	ldi	r24, 0x36	; 54
      580:	91 e0       	ldi	r25, 0x01	; 1
      582:	0e 94 7e 04 	call	0x8fc	; 0x8fc <LCD_WriteString>
 	Return_Byte =0;
-     586:	10 92 47 01 	sts	0x0147, r1	; 0x800147 <Return_Byte>
+     586:	10 92 49 01 	sts	0x0149, r1	; 0x800149 <Return_Byte>
 	LCD_GoTo(1 , 0);
      58a:	60 e0       	ldi	r22, 0x00	; 0
      58c:	81 e0       	ldi	r24, 0x01	; 1
@@ -959,7 +959,7 @@ void Change_PIN_Sequence(void)
 	{
 		Return_Byte = UART_ReceivedByte_Status();
      594:	0e 94 61 08 	call	0x10c2	; 0x10c2 <UART_ReceivedByte_Status>
-     598:	80 93 47 01 	sts	0x0147, r24	; 0x800147 <Return_Byte>
+     598:	80 93 49 01 	sts	0x0149, r24	; 0x800149 <Return_Byte>
 		if (Return_Byte == 1)
      59c:	81 30       	cpi	r24, 0x01	; 1
      59e:	69 f4       	brne	.+26     	; 0x5ba <Change_PIN_Sequence+0x66>
@@ -967,9 +967,9 @@ void Change_PIN_Sequence(void)
 			UART_Received_Data[i] = UART_RECEIVED_BYTE;
      5a0:	ec 2f       	mov	r30, r28
      5a2:	f0 e0       	ldi	r31, 0x00	; 0
-     5a4:	e0 5a       	subi	r30, 0xA0	; 160
+     5a4:	ee 59       	subi	r30, 0x9E	; 158
      5a6:	fe 4f       	sbci	r31, 0xFE	; 254
-     5a8:	80 91 5f 01 	lds	r24, 0x015F	; 0x80015f <UART_RECEIVED_BYTE>
+     5a8:	80 91 61 01 	lds	r24, 0x0161	; 0x800161 <UART_RECEIVED_BYTE>
      5ac:	80 83       	st	Z, r24
 			LCD_WriteChar('*');
      5ae:	8a e2       	ldi	r24, 0x2A	; 42
@@ -977,7 +977,7 @@ void Change_PIN_Sequence(void)
 			i++;
      5b4:	cf 5f       	subi	r28, 0xFF	; 255
 			Return_Byte=0;
-     5b6:	10 92 47 01 	sts	0x0147, r1	; 0x800147 <Return_Byte>
+     5b6:	10 92 49 01 	sts	0x0149, r1	; 0x800149 <Return_Byte>
 		}
 		if (i == PASSWORD_SIZE)
      5ba:	c4 30       	cpi	r28, 0x04	; 4
@@ -985,7 +985,7 @@ void Change_PIN_Sequence(void)
 		{
 			Return_Value = 1;
      5be:	81 e0       	ldi	r24, 0x01	; 1
-     5c0:	80 93 46 01 	sts	0x0146, r24	; 0x800146 <Return_Value>
+     5c0:	80 93 48 01 	sts	0x0148, r24	; 0x800148 <Return_Value>
      5c4:	06 c0       	rjmp	.+12     	; 0x5d2 <Change_PIN_Sequence+0x7e>
 	LCD_Clear();
 	LCD_GoTo(0,0);
@@ -1001,26 +1001,26 @@ void Change_PIN_Sequence(void)
 	}
 	i=0;
 	if (Return_Value == 1)
-     5ca:	80 91 46 01 	lds	r24, 0x0146	; 0x800146 <Return_Value>
+     5ca:	80 91 48 01 	lds	r24, 0x0148	; 0x800148 <Return_Value>
      5ce:	81 30       	cpi	r24, 0x01	; 1
      5d0:	e9 f4       	brne	.+58     	; 0x60c <Change_PIN_Sequence+0xb8>
 	{
 		if ((UART_Received_Data[0] == Pass_Ptr[0]) && (UART_Received_Data[1] == Pass_Ptr[1]) && (UART_Received_Data[2] == Pass_Ptr[2]) && (UART_Received_Data[3] == Pass_Ptr[3]) )
-     5d2:	e0 91 44 01 	lds	r30, 0x0144	; 0x800144 <__data_end>
-     5d6:	f0 91 45 01 	lds	r31, 0x0145	; 0x800145 <__data_end+0x1>
-     5da:	90 91 60 01 	lds	r25, 0x0160	; 0x800160 <UART_Received_Data>
+     5d2:	e0 91 46 01 	lds	r30, 0x0146	; 0x800146 <__data_end>
+     5d6:	f0 91 47 01 	lds	r31, 0x0147	; 0x800147 <__data_end+0x1>
+     5da:	90 91 62 01 	lds	r25, 0x0162	; 0x800162 <UART_Received_Data>
      5de:	80 81       	ld	r24, Z
      5e0:	98 13       	cpse	r25, r24
      5e2:	12 c0       	rjmp	.+36     	; 0x608 <Change_PIN_Sequence+0xb4>
-     5e4:	90 91 61 01 	lds	r25, 0x0161	; 0x800161 <UART_Received_Data+0x1>
+     5e4:	90 91 63 01 	lds	r25, 0x0163	; 0x800163 <UART_Received_Data+0x1>
      5e8:	81 81       	ldd	r24, Z+1	; 0x01
      5ea:	98 13       	cpse	r25, r24
      5ec:	0d c0       	rjmp	.+26     	; 0x608 <Change_PIN_Sequence+0xb4>
-     5ee:	90 91 62 01 	lds	r25, 0x0162	; 0x800162 <UART_Received_Data+0x2>
+     5ee:	90 91 64 01 	lds	r25, 0x0164	; 0x800164 <UART_Received_Data+0x2>
      5f2:	82 81       	ldd	r24, Z+2	; 0x02
      5f4:	98 13       	cpse	r25, r24
      5f6:	08 c0       	rjmp	.+16     	; 0x608 <Change_PIN_Sequence+0xb4>
-     5f8:	90 91 63 01 	lds	r25, 0x0163	; 0x800163 <UART_Received_Data+0x3>
+     5f8:	90 91 65 01 	lds	r25, 0x0165	; 0x800165 <UART_Received_Data+0x3>
      5fc:	83 81       	ldd	r24, Z+3	; 0x03
      5fe:	98 13       	cpse	r25, r24
      600:	03 c0       	rjmp	.+6      	; 0x608 <Change_PIN_Sequence+0xb4>
@@ -1048,13 +1048,13 @@ void App (void)
 {
 	Return_Byte = UART_ReceivedByte_Status();
      610:	0e 94 61 08 	call	0x10c2	; 0x10c2 <UART_ReceivedByte_Status>
-     614:	80 93 47 01 	sts	0x0147, r24	; 0x800147 <Return_Byte>
+     614:	80 93 49 01 	sts	0x0149, r24	; 0x800149 <Return_Byte>
 	if (Return_Byte == 1)
      618:	81 30       	cpi	r24, 0x01	; 1
      61a:	59 f4       	brne	.+22     	; 0x632 <App+0x22>
 	{
 		if (UART_RECEIVED_BYTE == '1')
-     61c:	80 91 5f 01 	lds	r24, 0x015F	; 0x80015f <UART_RECEIVED_BYTE>
+     61c:	80 91 61 01 	lds	r24, 0x0161	; 0x800161 <UART_RECEIVED_BYTE>
      620:	81 33       	cpi	r24, 0x31	; 49
      622:	19 f4       	brne	.+6      	; 0x62a <App+0x1a>
 		{
@@ -1256,9 +1256,9 @@ uint8* EEPROM_ReadMultipleBytes (uint8 EEPROM_Address , uint8 Byte_Address)
 	I2C_SlaveAddress_ReadOperation(EEPROM_Address);
      720:	8c 2f       	mov	r24, r28
      722:	0e 94 f3 05 	call	0xbe6	; 0xbe6 <I2C_SlaveAddress_ReadOperation>
-     726:	ca e4       	ldi	r28, 0x4A	; 74
+     726:	cc e4       	ldi	r28, 0x4C	; 76
      728:	d1 e0       	ldi	r29, 0x01	; 1
-     72a:	0e e4       	ldi	r16, 0x4E	; 78
+     72a:	00 e5       	ldi	r16, 0x50	; 80
      72c:	11 e0       	ldi	r17, 0x01	; 1
 	while (Data_Cntr < Read_Data_Size)
 	{
@@ -1282,7 +1282,7 @@ uint8* EEPROM_ReadMultipleBytes (uint8 EEPROM_Address , uint8 Byte_Address)
      73a:	0e 94 1f 06 	call	0xc3e	; 0xc3e <I2C_StopCondition>
 	return Data;
 }
-     73e:	8a e4       	ldi	r24, 0x4A	; 74
+     73e:	8c e4       	ldi	r24, 0x4C	; 76
      740:	91 e0       	ldi	r25, 0x01	; 1
      742:	df 91       	pop	r29
      744:	cf 91       	pop	r28
@@ -1291,10 +1291,10 @@ uint8* EEPROM_ReadMultipleBytes (uint8 EEPROM_Address , uint8 Byte_Address)
      74a:	08 95       	ret
 
 0000074c <LCD_WriteCommand>:
-			 LCD_WriteChar(((temp%10)+48));
-			 temp /= 10;
-		 }
+		 LCD_WriteChar(((temp%10)+48));
+		 temp /= 10;
 	 }
+
 	 _delay_ms(5);
 }
      74c:	cf 93       	push	r28
@@ -2202,8 +2202,8 @@ void IRQH_SetCallBackGPT (void(*p1)(void))
 void IRQH_SetCallBackUART (void(*p2)(void))
 {
 	RX_ptr = p2;
-     c5c:	90 93 57 01 	sts	0x0157, r25	; 0x800157 <RX_ptr+0x1>
-     c60:	80 93 56 01 	sts	0x0156, r24	; 0x800156 <RX_ptr>
+     c5c:	90 93 59 01 	sts	0x0159, r25	; 0x800159 <RX_ptr+0x1>
+     c60:	80 93 58 01 	sts	0x0158, r24	; 0x800158 <RX_ptr>
      c64:	08 95       	ret
 
 00000c66 <__vector_1>:
@@ -2231,8 +2231,8 @@ ISR(INT0_vect)
      c84:	ef 93       	push	r30
      c86:	ff 93       	push	r31
 	(*ptr)();
-     c88:	e0 91 5a 01 	lds	r30, 0x015A	; 0x80015a <ptr>
-     c8c:	f0 91 5b 01 	lds	r31, 0x015B	; 0x80015b <ptr+0x1>
+     c88:	e0 91 5c 01 	lds	r30, 0x015C	; 0x80015c <ptr>
+     c8c:	f0 91 5d 01 	lds	r31, 0x015D	; 0x80015d <ptr+0x1>
      c90:	09 95       	icall
 }
      c92:	ff 91       	pop	r31
@@ -2279,22 +2279,22 @@ ISR(TIMER0_OVF_vect)
      cd4:	ff 93       	push	r31
 	static uint32 TIMER0_OVF_CNTR =0;
 	TIMER0_OVF_CNTR++;
-     cd6:	80 91 52 01 	lds	r24, 0x0152	; 0x800152 <TIMER0_OVF_CNTR.1680>
-     cda:	90 91 53 01 	lds	r25, 0x0153	; 0x800153 <TIMER0_OVF_CNTR.1680+0x1>
-     cde:	a0 91 54 01 	lds	r26, 0x0154	; 0x800154 <TIMER0_OVF_CNTR.1680+0x2>
-     ce2:	b0 91 55 01 	lds	r27, 0x0155	; 0x800155 <TIMER0_OVF_CNTR.1680+0x3>
+     cd6:	80 91 54 01 	lds	r24, 0x0154	; 0x800154 <TIMER0_OVF_CNTR.1680>
+     cda:	90 91 55 01 	lds	r25, 0x0155	; 0x800155 <TIMER0_OVF_CNTR.1680+0x1>
+     cde:	a0 91 56 01 	lds	r26, 0x0156	; 0x800156 <TIMER0_OVF_CNTR.1680+0x2>
+     ce2:	b0 91 57 01 	lds	r27, 0x0157	; 0x800157 <TIMER0_OVF_CNTR.1680+0x3>
      ce6:	01 96       	adiw	r24, 0x01	; 1
      ce8:	a1 1d       	adc	r26, r1
      cea:	b1 1d       	adc	r27, r1
-     cec:	80 93 52 01 	sts	0x0152, r24	; 0x800152 <TIMER0_OVF_CNTR.1680>
-     cf0:	90 93 53 01 	sts	0x0153, r25	; 0x800153 <TIMER0_OVF_CNTR.1680+0x1>
-     cf4:	a0 93 54 01 	sts	0x0154, r26	; 0x800154 <TIMER0_OVF_CNTR.1680+0x2>
-     cf8:	b0 93 55 01 	sts	0x0155, r27	; 0x800155 <TIMER0_OVF_CNTR.1680+0x3>
+     cec:	80 93 54 01 	sts	0x0154, r24	; 0x800154 <TIMER0_OVF_CNTR.1680>
+     cf0:	90 93 55 01 	sts	0x0155, r25	; 0x800155 <TIMER0_OVF_CNTR.1680+0x1>
+     cf4:	a0 93 56 01 	sts	0x0156, r26	; 0x800156 <TIMER0_OVF_CNTR.1680+0x2>
+     cf8:	b0 93 57 01 	sts	0x0157, r27	; 0x800157 <TIMER0_OVF_CNTR.1680+0x3>
 	if(TIMER0_OVF_CNTR == TIMER0Number_OVF_Flags_g)
-     cfc:	40 91 68 01 	lds	r20, 0x0168	; 0x800168 <TIMER0Number_OVF_Flags_g>
-     d00:	50 91 69 01 	lds	r21, 0x0169	; 0x800169 <TIMER0Number_OVF_Flags_g+0x1>
-     d04:	60 91 6a 01 	lds	r22, 0x016A	; 0x80016a <TIMER0Number_OVF_Flags_g+0x2>
-     d08:	70 91 6b 01 	lds	r23, 0x016B	; 0x80016b <TIMER0Number_OVF_Flags_g+0x3>
+     cfc:	40 91 6a 01 	lds	r20, 0x016A	; 0x80016a <TIMER0Number_OVF_Flags_g>
+     d00:	50 91 6b 01 	lds	r21, 0x016B	; 0x80016b <TIMER0Number_OVF_Flags_g+0x1>
+     d04:	60 91 6c 01 	lds	r22, 0x016C	; 0x80016c <TIMER0Number_OVF_Flags_g+0x2>
+     d08:	70 91 6d 01 	lds	r23, 0x016D	; 0x80016d <TIMER0Number_OVF_Flags_g+0x3>
      d0c:	84 17       	cp	r24, r20
      d0e:	95 07       	cpc	r25, r21
      d10:	a6 07       	cpc	r26, r22
@@ -2302,16 +2302,16 @@ ISR(TIMER0_OVF_vect)
      d14:	81 f4       	brne	.+32     	; 0xd36 <__vector_11+0x82>
 	{
 		(*GPT_ptr)();
-     d16:	e0 91 58 01 	lds	r30, 0x0158	; 0x800158 <GPT_ptr>
-     d1a:	f0 91 59 01 	lds	r31, 0x0159	; 0x800159 <GPT_ptr+0x1>
+     d16:	e0 91 5a 01 	lds	r30, 0x015A	; 0x80015a <GPT_ptr>
+     d1a:	f0 91 5b 01 	lds	r31, 0x015B	; 0x80015b <GPT_ptr+0x1>
      d1e:	09 95       	icall
 		TIMER0_OVF_CNTR=0;
-     d20:	10 92 52 01 	sts	0x0152, r1	; 0x800152 <TIMER0_OVF_CNTR.1680>
-     d24:	10 92 53 01 	sts	0x0153, r1	; 0x800153 <TIMER0_OVF_CNTR.1680+0x1>
-     d28:	10 92 54 01 	sts	0x0154, r1	; 0x800154 <TIMER0_OVF_CNTR.1680+0x2>
-     d2c:	10 92 55 01 	sts	0x0155, r1	; 0x800155 <TIMER0_OVF_CNTR.1680+0x3>
+     d20:	10 92 54 01 	sts	0x0154, r1	; 0x800154 <TIMER0_OVF_CNTR.1680>
+     d24:	10 92 55 01 	sts	0x0155, r1	; 0x800155 <TIMER0_OVF_CNTR.1680+0x1>
+     d28:	10 92 56 01 	sts	0x0156, r1	; 0x800156 <TIMER0_OVF_CNTR.1680+0x2>
+     d2c:	10 92 57 01 	sts	0x0157, r1	; 0x800157 <TIMER0_OVF_CNTR.1680+0x3>
 		TCNT0 = TIMER0Init_Value_g;
-     d30:	80 91 70 01 	lds	r24, 0x0170	; 0x800170 <TIMER0Init_Value_g>
+     d30:	80 91 72 01 	lds	r24, 0x0172	; 0x800172 <TIMER0Init_Value_g>
      d34:	82 bf       	out	0x32, r24	; 50
 	}
 }
@@ -2356,22 +2356,22 @@ ISR(TIMER0_COMP_vect)
      d78:	ff 93       	push	r31
 	static uint32 TIMER0_CmprMatch_CNTR =0;
 	TIMER0_CmprMatch_CNTR++;
-     d7a:	80 91 4e 01 	lds	r24, 0x014E	; 0x80014e <TIMER0_CmprMatch_CNTR.1686>
-     d7e:	90 91 4f 01 	lds	r25, 0x014F	; 0x80014f <TIMER0_CmprMatch_CNTR.1686+0x1>
-     d82:	a0 91 50 01 	lds	r26, 0x0150	; 0x800150 <TIMER0_CmprMatch_CNTR.1686+0x2>
-     d86:	b0 91 51 01 	lds	r27, 0x0151	; 0x800151 <TIMER0_CmprMatch_CNTR.1686+0x3>
+     d7a:	80 91 50 01 	lds	r24, 0x0150	; 0x800150 <TIMER0_CmprMatch_CNTR.1686>
+     d7e:	90 91 51 01 	lds	r25, 0x0151	; 0x800151 <TIMER0_CmprMatch_CNTR.1686+0x1>
+     d82:	a0 91 52 01 	lds	r26, 0x0152	; 0x800152 <TIMER0_CmprMatch_CNTR.1686+0x2>
+     d86:	b0 91 53 01 	lds	r27, 0x0153	; 0x800153 <TIMER0_CmprMatch_CNTR.1686+0x3>
      d8a:	01 96       	adiw	r24, 0x01	; 1
      d8c:	a1 1d       	adc	r26, r1
      d8e:	b1 1d       	adc	r27, r1
-     d90:	80 93 4e 01 	sts	0x014E, r24	; 0x80014e <TIMER0_CmprMatch_CNTR.1686>
-     d94:	90 93 4f 01 	sts	0x014F, r25	; 0x80014f <TIMER0_CmprMatch_CNTR.1686+0x1>
-     d98:	a0 93 50 01 	sts	0x0150, r26	; 0x800150 <TIMER0_CmprMatch_CNTR.1686+0x2>
-     d9c:	b0 93 51 01 	sts	0x0151, r27	; 0x800151 <TIMER0_CmprMatch_CNTR.1686+0x3>
+     d90:	80 93 50 01 	sts	0x0150, r24	; 0x800150 <TIMER0_CmprMatch_CNTR.1686>
+     d94:	90 93 51 01 	sts	0x0151, r25	; 0x800151 <TIMER0_CmprMatch_CNTR.1686+0x1>
+     d98:	a0 93 52 01 	sts	0x0152, r26	; 0x800152 <TIMER0_CmprMatch_CNTR.1686+0x2>
+     d9c:	b0 93 53 01 	sts	0x0153, r27	; 0x800153 <TIMER0_CmprMatch_CNTR.1686+0x3>
 	if (TIMER0_CmprMatch_CNTR == TIMER0Number_CmprMatch_Flags_g)
-     da0:	40 91 64 01 	lds	r20, 0x0164	; 0x800164 <TIMER0Number_CmprMatch_Flags_g>
-     da4:	50 91 65 01 	lds	r21, 0x0165	; 0x800165 <TIMER0Number_CmprMatch_Flags_g+0x1>
-     da8:	60 91 66 01 	lds	r22, 0x0166	; 0x800166 <TIMER0Number_CmprMatch_Flags_g+0x2>
-     dac:	70 91 67 01 	lds	r23, 0x0167	; 0x800167 <TIMER0Number_CmprMatch_Flags_g+0x3>
+     da0:	40 91 66 01 	lds	r20, 0x0166	; 0x800166 <TIMER0Number_CmprMatch_Flags_g>
+     da4:	50 91 67 01 	lds	r21, 0x0167	; 0x800167 <TIMER0Number_CmprMatch_Flags_g+0x1>
+     da8:	60 91 68 01 	lds	r22, 0x0168	; 0x800168 <TIMER0Number_CmprMatch_Flags_g+0x2>
+     dac:	70 91 69 01 	lds	r23, 0x0169	; 0x800169 <TIMER0Number_CmprMatch_Flags_g+0x3>
      db0:	84 17       	cp	r24, r20
      db2:	95 07       	cpc	r25, r21
      db4:	a6 07       	cpc	r26, r22
@@ -2379,14 +2379,14 @@ ISR(TIMER0_COMP_vect)
      db8:	69 f4       	brne	.+26     	; 0xdd4 <__vector_10+0x7c>
 	{
 		(*GPT_ptr)();
-     dba:	e0 91 58 01 	lds	r30, 0x0158	; 0x800158 <GPT_ptr>
-     dbe:	f0 91 59 01 	lds	r31, 0x0159	; 0x800159 <GPT_ptr+0x1>
+     dba:	e0 91 5a 01 	lds	r30, 0x015A	; 0x80015a <GPT_ptr>
+     dbe:	f0 91 5b 01 	lds	r31, 0x015B	; 0x80015b <GPT_ptr+0x1>
      dc2:	09 95       	icall
 		TIMER0_CmprMatch_CNTR=0;
-     dc4:	10 92 4e 01 	sts	0x014E, r1	; 0x80014e <TIMER0_CmprMatch_CNTR.1686>
-     dc8:	10 92 4f 01 	sts	0x014F, r1	; 0x80014f <TIMER0_CmprMatch_CNTR.1686+0x1>
-     dcc:	10 92 50 01 	sts	0x0150, r1	; 0x800150 <TIMER0_CmprMatch_CNTR.1686+0x2>
-     dd0:	10 92 51 01 	sts	0x0151, r1	; 0x800151 <TIMER0_CmprMatch_CNTR.1686+0x3>
+     dc4:	10 92 50 01 	sts	0x0150, r1	; 0x800150 <TIMER0_CmprMatch_CNTR.1686>
+     dc8:	10 92 51 01 	sts	0x0151, r1	; 0x800151 <TIMER0_CmprMatch_CNTR.1686+0x1>
+     dcc:	10 92 52 01 	sts	0x0152, r1	; 0x800152 <TIMER0_CmprMatch_CNTR.1686+0x2>
+     dd0:	10 92 53 01 	sts	0x0153, r1	; 0x800153 <TIMER0_CmprMatch_CNTR.1686+0x3>
 	}
 }
      dd4:	ff 91       	pop	r31
@@ -2423,17 +2423,17 @@ ISR(TIMER1_OVF_vect)
 	//(*GPT_ptr)();
 	//TCNT1_16BIT_ACCESS = TIMER1Init_Value_g;    These two lines for Timer1 Normal Mode 
 	TIMER1Number_OVF_Flags_g++;  // This line For ICU Usage with Ultrasonic Sensor 
-     e08:	80 91 6c 01 	lds	r24, 0x016C	; 0x80016c <TIMER1Number_OVF_Flags_g>
-     e0c:	90 91 6d 01 	lds	r25, 0x016D	; 0x80016d <TIMER1Number_OVF_Flags_g+0x1>
-     e10:	a0 91 6e 01 	lds	r26, 0x016E	; 0x80016e <TIMER1Number_OVF_Flags_g+0x2>
-     e14:	b0 91 6f 01 	lds	r27, 0x016F	; 0x80016f <TIMER1Number_OVF_Flags_g+0x3>
+     e08:	80 91 6e 01 	lds	r24, 0x016E	; 0x80016e <TIMER1Number_OVF_Flags_g>
+     e0c:	90 91 6f 01 	lds	r25, 0x016F	; 0x80016f <TIMER1Number_OVF_Flags_g+0x1>
+     e10:	a0 91 70 01 	lds	r26, 0x0170	; 0x800170 <TIMER1Number_OVF_Flags_g+0x2>
+     e14:	b0 91 71 01 	lds	r27, 0x0171	; 0x800171 <TIMER1Number_OVF_Flags_g+0x3>
      e18:	01 96       	adiw	r24, 0x01	; 1
      e1a:	a1 1d       	adc	r26, r1
      e1c:	b1 1d       	adc	r27, r1
-     e1e:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <TIMER1Number_OVF_Flags_g>
-     e22:	90 93 6d 01 	sts	0x016D, r25	; 0x80016d <TIMER1Number_OVF_Flags_g+0x1>
-     e26:	a0 93 6e 01 	sts	0x016E, r26	; 0x80016e <TIMER1Number_OVF_Flags_g+0x2>
-     e2a:	b0 93 6f 01 	sts	0x016F, r27	; 0x80016f <TIMER1Number_OVF_Flags_g+0x3>
+     e1e:	80 93 6e 01 	sts	0x016E, r24	; 0x80016e <TIMER1Number_OVF_Flags_g>
+     e22:	90 93 6f 01 	sts	0x016F, r25	; 0x80016f <TIMER1Number_OVF_Flags_g+0x1>
+     e26:	a0 93 70 01 	sts	0x0170, r26	; 0x800170 <TIMER1Number_OVF_Flags_g+0x2>
+     e2a:	b0 93 71 01 	sts	0x0171, r27	; 0x800171 <TIMER1Number_OVF_Flags_g+0x3>
 }
      e2e:	bf 91       	pop	r27
      e30:	af 91       	pop	r26
@@ -2467,8 +2467,8 @@ ISR(TIMER1_COMPA_vect)
      e5e:	ef 93       	push	r30
      e60:	ff 93       	push	r31
 	(*GPT_ptr)();
-     e62:	e0 91 58 01 	lds	r30, 0x0158	; 0x800158 <GPT_ptr>
-     e66:	f0 91 59 01 	lds	r31, 0x0159	; 0x800159 <GPT_ptr+0x1>
+     e62:	e0 91 5a 01 	lds	r30, 0x015A	; 0x80015a <GPT_ptr>
+     e66:	f0 91 5b 01 	lds	r31, 0x015B	; 0x80015b <GPT_ptr+0x1>
      e6a:	09 95       	icall
 }
      e6c:	ff 91       	pop	r31
@@ -2503,12 +2503,12 @@ ISR (USART_TXC_vect)
      e96:	11 24       	eor	r1, r1
      e98:	8f 93       	push	r24
 	TX_CNTR++;
-     e9a:	80 91 5d 01 	lds	r24, 0x015D	; 0x80015d <TX_CNTR>
+     e9a:	80 91 5f 01 	lds	r24, 0x015F	; 0x80015f <TX_CNTR>
      e9e:	8f 5f       	subi	r24, 0xFF	; 255
-     ea0:	80 93 5d 01 	sts	0x015D, r24	; 0x80015d <TX_CNTR>
+     ea0:	80 93 5f 01 	sts	0x015F, r24	; 0x80015f <TX_CNTR>
 	TX_STATUS_FLAG =1;
      ea4:	81 e0       	ldi	r24, 0x01	; 1
-     ea6:	80 93 5e 01 	sts	0x015E, r24	; 0x80015e <TX_STATUS_FLAG>
+     ea6:	80 93 60 01 	sts	0x0160, r24	; 0x800160 <TX_STATUS_FLAG>
 }
      eaa:	8f 91       	pop	r24
      eac:	0f 90       	pop	r0
@@ -2539,8 +2539,8 @@ ISR (USART_RXC_vect)
      ed4:	ef 93       	push	r30
      ed6:	ff 93       	push	r31
 	(*RX_ptr)();
-     ed8:	e0 91 56 01 	lds	r30, 0x0156	; 0x800156 <RX_ptr>
-     edc:	f0 91 57 01 	lds	r31, 0x0157	; 0x800157 <RX_ptr+0x1>
+     ed8:	e0 91 58 01 	lds	r30, 0x0158	; 0x800158 <RX_ptr>
+     edc:	f0 91 59 01 	lds	r31, 0x0159	; 0x800159 <RX_ptr+0x1>
      ee0:	09 95       	icall
 }
      ee2:	ff 91       	pop	r31
@@ -2881,9 +2881,9 @@ void PWM1_Generate (uint8 Frequency , uint8 Duty_Cycle)
 
 000010b4 <UART_ReceiveByte>:
     10b4:	8c b1       	in	r24, 0x0c	; 12
-    10b6:	80 93 5f 01 	sts	0x015F, r24	; 0x80015f <UART_RECEIVED_BYTE>
+    10b6:	80 93 61 01 	sts	0x0161, r24	; 0x800161 <UART_RECEIVED_BYTE>
     10ba:	81 e0       	ldi	r24, 0x01	; 1
-    10bc:	80 93 5c 01 	sts	0x015C, r24	; 0x80015c <ReceivedByte_FLAG>
+    10bc:	80 93 5e 01 	sts	0x015E, r24	; 0x80015e <ReceivedByte_FLAG>
     10c0:	08 95       	ret
 
 000010c2 <UART_ReceivedByte_Status>:
@@ -2893,13 +2893,13 @@ uint8 UART_ReceivedByte_Status (void)
 	uint8 REC_Status =0;
 	
 	if (ReceivedByte_FLAG == 1)
-    10c2:	80 91 5c 01 	lds	r24, 0x015C	; 0x80015c <ReceivedByte_FLAG>
+    10c2:	80 91 5e 01 	lds	r24, 0x015E	; 0x80015e <ReceivedByte_FLAG>
     10c6:	81 30       	cpi	r24, 0x01	; 1
     10c8:	19 f4       	brne	.+6      	; 0x10d0 <UART_ReceivedByte_Status+0xe>
 	{
 		REC_Status = 1;
 		ReceivedByte_FLAG =0;
-    10ca:	10 92 5c 01 	sts	0x015C, r1	; 0x80015c <ReceivedByte_FLAG>
+    10ca:	10 92 5e 01 	sts	0x015E, r1	; 0x80015e <ReceivedByte_FLAG>
     10ce:	08 95       	ret
 	return REC_Status;
 }

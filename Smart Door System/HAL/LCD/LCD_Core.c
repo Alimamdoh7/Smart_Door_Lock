@@ -189,21 +189,19 @@ void LCD_WriteInteger(sint32 num)
 		 LCD_WriteChar('-');
 		 num *= -1;
 	 }
-
-	 else{
 		 
-		 while(num > 0)
-		 {
-			 temp = ((temp*10) + (num%10));
-			 num /= 10;
-		 }
-
-		 while(temp > 1 )
-		 {
-			 LCD_WriteChar(((temp%10)+48));
-			 temp /= 10;
-		 }
+	 while(num > 0)
+	 {
+		 temp = ((temp*10) + (num%10));
+		 num /= 10;
 	 }
+
+	 while(temp > 1 )
+	 {
+		 LCD_WriteChar(((temp%10)+48));
+		 temp /= 10;
+	 }
+
 	 _delay_ms(5);
 }
 
